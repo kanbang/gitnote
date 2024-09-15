@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">-->
+
+  <!-- Theme: Simple -->
+  <link rel="stylesheet" title="light" href="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+
+  <!-- Theme: Simple Dark -->
+  <link rel="stylesheet" title="dark" href="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+
+  <!-- link docsify-dark-switch.css  -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-switch/dist/docsify-dark-switch.css">
+
+  <!-- 置顶插件样式 -->
+  <link rel="stylesheet" type="text/css" href="./static/css/myStyle.css" />
+
+  <!-- arrow style -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+
+  <!-- folder style -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" /> -->
+
+  <style>
+    :root {
+      --docsifytabs-border-color: #ededed;
+      --docsifytabs-tab-highlight-color: #0b87da;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">加载中</div>
+  <a class="to-top">Top</a>
+  <script>
+    window.$docsify = {
+      name: '<span>10x程序员工作法</span>',   //文档标题，可以通过HTML来定制
+      // repo: 'https://gitee.com/cwhyuks',   //开启右上角的小猫，点击可跳转至对应url
+
+      loadSidebar: true,      //开启左侧标题栏
+      sidebarDisplayLevel: 1, // 设置侧边栏显示级别
+      subMaxLevel: 3,
+
+      coverpage: true,  //开启封面
+      onlyCover: false, //只在访问主页时加载封面
+
+      loadNavbar: true, //加载导航栏
+      // auto2top: true, //切换页面自动回到顶部
+
+      // 开启搜索插件之后的完整配置参数,默认值是 search: 'auto',
+      search: {
+        maxAge: 86400000,//过期时间,单位毫秒,默认一天
+        paths: 'auto',
+        placeholder: '请输入搜索关键字',
+        noData: '未搜索到相应内容',
+        depth: 2
+      },
+      //统计字数插件配置参数
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      },
+      //开启markdown选项卡插件后的配置参数
+      tabs: {
+        persist: true,      // default
+        sync: true,      // default
+        theme: 'material', // default
+        tabComments: true,      // default
+        tabHeadings: true       // default
+      },
+      //复制代码时配置
+      copyCode: {
+        buttonText: 'Copy',
+        errorText: 'Error',
+        successText: 'OK!'
+      },
+      //页脚内容显示
+      footer: {
+        copy: '<strong>©2024</strong>',
+        auth: ' <strong> 他山之石，可以攻玉 </strong>',
+        pre: '<hr/>',
+        style: 'text-align: center;',
+      },
+      //分页导航插件
+      pagination: {
+        previousText: '上一篇',  //上一篇文章名字，可以为string或者object，默认PREVIOUS,
+        nextText: '下一篇',  //下一篇文章名字，可以为string或者object，默认NEXT
+        crossChapter: true, //允许导航到上一篇或者下一篇
+        crossChapterText: true, //显示上一篇或者下一篇名称
+      },
+
+      plugins: [
+        function (hook, vm) {
+          // 在每次路由发生变化时设置不同的标题
+          hook.beforeEach(html => {
+            // 获取哈希值并解码
+            var path = decodeURIComponent(window.location.hash);
+
+            const linkTag = document.querySelector(`a.app-name-link`);
+            // 根据路由路径设置不同的标题
+            if (path.startsWith('#/10x程序员工作法笔记')) {
+              linkTag.setHTMLUnsafe("<span>10x程序员工作法笔记</span>");
+            } else if (path.startsWith('#/10x程序员工作法')) {
+              linkTag.setHTMLUnsafe("<span>10x程序员工作法</span>");
+            } else {
+              linkTag.setHTMLUnsafe("<span>GitNote</span>");
+            }
+            next(content); // 继续渲染页面
+
+          });
+        },
+      ]
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 代码复制到剪切板 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 搜索栏插件件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 图片是否缩放，如果需要特定某个图忽略缩放，需要在对应的md的格式中指定，例如：![](image.png ":no-zoom") -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+  <!-- 折叠菜单 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
+  <!-- script docsify-dark-switch.js or docsify-dark-switch.min.js  -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-dark-switch/dist/docsify-dark-switch.min.js"></script>
+
+  <!-- Required -->
+  <!-- <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script> -->
+
+  <!-- Recommended -->
+  <!-- <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script> -->
+
+  <!-- 统计字数 -->
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+  <!--  用来在Markdown中显示选项卡,需要在需要展示选项卡的中间增加对应标签，见https://jhildenbiddle.github.io/docsify-tabs/#/?id=demo -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <!-- 增加部分语言的代码高亮,更多语言请搜索https://cdn.jsdelivr.net/npm/prismjs@1/components/ -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-yaml.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-properties.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+  <!-- 增加emoji图标 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!-- 置顶插件,需要引入对应js -->
+  <script src="./static/js/jquery-1.11.3.min.js"></script>
+  <script src="./static/js/jquery.toTop.min.js"></script>
+  <script> $('.to-top').toTop(); </script>
+  <!-- 文档页脚 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-footer-enh/dist/docsify-footer.min.js"></script>
+  <!-- 分页导航插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 导入查看PDF的插件 -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
+  <!-- <script src="path-to-file/docsify-pdf-embed.js"></script> -->
+  <script src="//unpkg.com/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
+</body>
+
+</html>
